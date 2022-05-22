@@ -3,6 +3,7 @@ import React from "react";
 const App = () => {
   const [num, setNum] = React.useState([]);
   const [checkNum, setCheckNum] = React.useState([]);
+  const [strike, setStrike] = React.useState(0);
 
   // 난수 생성
   const Start = () => {
@@ -28,9 +29,24 @@ const App = () => {
     }
   };
 
+  const StrikeCheck = () => {
+    let strikecheck = 0;
+    if (num[0] === checkNum[0]) {
+      strikecheck += 1;
+    }
+    if (num[1] === checkNum[1]) {
+      strikecheck += 1;
+    }
+    if (num[2] === checkNum[2]) {
+      strikecheck += 1;
+    }
+    setStrike(strikecheck);
+  };
+
   return (
     <div>
       <input type='text' placeholder='답입력' maxLength={3} onChange={(e) => InputNum(e)}></input>
+      <button onClick={() => StrikeCheck()}>확인</button>
       <button onClick={() => Start()}>시작하기</button>
     </div>
   );
