@@ -10,6 +10,7 @@ const App = () => {
   const [num, setNum] = React.useState([]);
   const [checkNum, setCheckNum] = React.useState([]);
 
+  // 난수 생성
   const Start = () => {
     let num2 = [];
     for (let i = 0; i < 3; i++) {
@@ -81,32 +82,57 @@ const App = () => {
   };
 
   return (
-    <div>
+    <div
+      style={{
+        width: "100%",
+        height: "100%",
+        margin: "auto",
+        textAlign: "center",
+      }}>
       {gameView ? (
-        <div>
+        <div style={{ margin: "20%" }}>
+          {start === false ? (
+            <div style={{ fontSize: "50px" }}>게임을 시작합니다!</div>
+          ) : strike === 0 && ball === 0 && start === true ? (
+            <div style={{ fontSize: "50px" }}>낫싱</div>
+          ) : strike === 3 ? (
+            End()
+          ) : (
+            <div style={{ fontSize: "50px" }}>
+              {strike}스트라이크, {`${ball}` - `${strike}`}볼 입니다!
+            </div>
+          )}
           <div>
             <input
               type='text'
               value={text}
-              placeholder='답입력'
+              placeholder='숫자 입력'
               maxLength={3}
-              onChange={(e) => InputNum(e)}></input>
-            <button onClick={() => StrikeCheck()}>확인</button>
+              onChange={(e) => InputNum(e)}
+              style={{ fontSize: "30px" }}></input>
+            <button
+              style={{
+                marginTop: "20%",
+                border: "1px, solid, black",
+                borderRadius: "5px",
+                fontSize: "30px",
+              }}
+              onClick={() => StrikeCheck()}>
+              확인
+            </button>
           </div>
-          {start === false ? (
-            <div>게임을 시작합니다!</div>
-          ) : strike === 0 && ball === 0 && start === true ? (
-            <div>낫싱</div>
-          ) : strike === 3 ? (
-            End()
-          ) : (
-            <div>
-              {strike}스트라이크, {`${ball}` - `${strike}`}볼 입니다!
-            </div>
-          )}
         </div>
       ) : (
-        <button onClick={() => Start()}>시작하기</button>
+        <button
+          style={{
+            marginTop: "20%",
+            border: "1px, solid, black",
+            borderRadius: "5px",
+            fontSize: "100px",
+          }}
+          onClick={() => Start()}>
+          시작하기
+        </button>
       )}
     </div>
   );
