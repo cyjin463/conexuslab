@@ -4,6 +4,7 @@ const App = () => {
   const [num, setNum] = React.useState([]);
   const [checkNum, setCheckNum] = React.useState([]);
   const [strike, setStrike] = React.useState(0);
+  const [ball, setBall] = React.useState(0);
 
   // 난수 생성
   const Start = () => {
@@ -29,6 +30,7 @@ const App = () => {
     }
   };
 
+  //스트라이크 확인
   const StrikeCheck = () => {
     let strikecheck = 0;
     if (num[0] === checkNum[0]) {
@@ -41,11 +43,26 @@ const App = () => {
       strikecheck += 1;
     }
     setStrike(strikecheck);
+    BallCheck();
+  };
+
+  //볼 확인
+  const BallCheck = () => {
+    let ballcheck = 0;
+    num.map((x) => {
+      {
+        checkNum.includes(x) ? (ballcheck += 1) : (ballcheck += 0);
+      }
+    });
+    setBall(ballcheck);
   };
 
   return (
     <div>
       <input type='text' placeholder='답입력' maxLength={3} onChange={(e) => InputNum(e)}></input>
+      <div>
+        {strike}스트라이크, {`${ball}` - `${strike}`}볼 입니다!
+      </div>
       <button onClick={() => StrikeCheck()}>확인</button>
       <button onClick={() => Start()}>시작하기</button>
     </div>
