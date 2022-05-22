@@ -57,6 +57,16 @@ const App = () => {
     setBall(ballcheck);
   };
 
+  //종료
+  const End = () => {
+    if (window.confirm("홈런!!! 게임을 다시 시작하시겠습니까?")) {
+      setNum([]);
+      Start();
+    } else {
+      window.location.reload("./App.js");
+    }
+  };
+
   return (
     <div>
       <input type='text' placeholder='답입력' maxLength={3} onChange={(e) => InputNum(e)}></input>
@@ -65,6 +75,7 @@ const App = () => {
       </div>
       <button onClick={() => StrikeCheck()}>확인</button>
       <button onClick={() => Start()}>시작하기</button>
+      <button onClick={() => End()}>종료하기</button>
     </div>
   );
 };
